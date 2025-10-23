@@ -1,0 +1,13 @@
+{
+    "name": "film2guide3-contracts",
+    "version": "1.0.0",
+    "scripts": {
+        "compile": "hardhat compile"
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^3.0.0"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.9.0"
+    }
+}
