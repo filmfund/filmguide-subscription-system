@@ -1,11 +1,16 @@
 {
     "name": "film2guide3-contracts",
     "version": "1.0.0",
+    "description": "Smart contracts for Film2Guide3 subscription system",
     "scripts": {
-        "compile": "hardhat compile"
+        "compile": "hardhat compile",
+        "test": "hardhat test",
+        "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+        "verify:sepolia": "hardhat verify --network sepolia"
     },
     "devDependencies": {
-        "@nomicfoundation/hardhat-toolbox": "^3.0.0"
+        "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+        "hardhat": "^2.17.0"
     },
     "dependencies": {
         "@openzeppelin/contracts": "^4.9.0"
