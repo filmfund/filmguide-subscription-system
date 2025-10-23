@@ -3,7 +3,7 @@ const hre = require("hardhat");
 async function main() {
     // PYUSD token address on Sepolia testnet
 
-    const PYUSD_ADDRESS = "0x..."; //actual PYUSD address on Sepolia
+    const PYUSD_ADDRESS = "0xCaC524BcA292aaade2DF8A05cC58F0a65B1B3bB9"; //actual PYUSD address on Sepolia
 
     console.log("Deploying Film2Guide3Subscription...");
 
