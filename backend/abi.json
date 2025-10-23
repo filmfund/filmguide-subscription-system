@@ -1,0 +1,90 @@
+[
+    {
+        "inputs": [],
+        "name": "createSubscription",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_subscriptionId",
+                "type": "uint256"
+            }
+        ],
+        "name": "processPayment",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "name": "_subscriptionId",
+                "type": "uint256"
+            }
+        ],
+        "name": "getSubscription",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "name": "id",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "subscriber",
+                        "type": "address"
+                    },
+                    {
+                        "name": "amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "nextPayment",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "active",
+                        "type": "bool"
+                    },
+                    {
+                        "name": "createdAt",
+                        "type": "uint256"
+                    },
+                    {
+                        "name": "lastPaymentAt",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "subscriptionId",
+                "type": "uint256"
+            },
+            {
+                "indexed": true,
+                "name": "subscriber",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "SubscriptionCreated",
+        "type": "event"
+    }
+]
