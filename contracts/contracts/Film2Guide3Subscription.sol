@@ -18,7 +18,6 @@ contract Film2Guide3Subscription is Ownable, ReentrancyGuard {
         uint32 nextPayment;        // 4 bytes (timestamp fits in 32 bits until 2106)
         uint32 createdAt;         // 4 bytes
         bool active;               // 1 byte
-        // Total: 29 bytes (fits in 1 storage slot)
     }
     
     /// @notice State variables
@@ -28,11 +27,11 @@ contract Film2Guide3Subscription is Ownable, ReentrancyGuard {
     uint256 public nextSubscriptionId = 1;
     uint256 public totalSubscribers = 0;
     
-    // PYUSD token address (Sepolia testnet)
+    // PYUSD token address
     IERC20 public immutable pyusdToken;
     
-    // Single subscription price: $10/month = 10 PYUSD (18 decimals)
-    uint256 public constant SUBSCRIPTION_PRICE = 10 * 10**18; // 10 PYUSD
+    // Single subscription price: $8/month
+    uint256 public constant SUBSCRIPTION_PRICE = 10 * 10**18;
     
     // Revenue split: 20% platform, 80% filmmakers (simplified)
     uint256 public constant PLATFORM_FEE = 2000; // 20% in basis points
@@ -54,11 +53,11 @@ contract Film2Guide3Subscription is Ownable, ReentrancyGuard {
         pyusdToken = IERC20(_pyusdToken);
     }
     
-    /// @notice Create a new subscription (gas optimized)
+    /// @notice Create a new subscription
     function createSubscription() external nonReentrant {
         uint256 subscriptionId = nextSubscriptionId++;
         
-        // Create subscription (packed in 1 storage slot)
+        // Create subscription 
         subscriptions[subscriptionId] = Subscription({
             subscriber: msg.sender,
             nextPayment: uint32(block.timestamp + 30 days),
@@ -87,17 +86,17 @@ contract Film2Guide3Subscription is Ownable, ReentrancyGuard {
         _processPayment(_subscriptionId);
     }
     
-    /// @notice Internal payment processing (gas optimized)
+    /// @notice Internal payment processing
     function _processPayment(uint256 _subscriptionId) internal {
         Subscription storage sub = subscriptions[_subscriptionId];
         
         // Transfer PYUSD from subscriber to contract
         pyusdToken.safeTransferFrom(sub.subscriber, address(this), SUBSCRIPTION_PRICE);
         
-        // Update subscription (packed update)
+        // Update subscription 
         sub.nextPayment = uint32(block.timestamp + 30 days);
         
-        // Distribute revenue (simplified)
+        // Distribute revenue 
         uint256 platformAmount = (SUBSCRIPTION_PRICE * PLATFORM_FEE) / 10000;
         
         // Transfer platform fee to owner
